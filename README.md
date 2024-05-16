@@ -42,7 +42,7 @@
    - Copy the SSL certificate files (`myprometheusdomain.one.cer` and `myprometheusdomain.one.key`) to the Prometheus server's configuration directory.
 
 
-   - Create the file  `web.yml` configuration file  at  `/etc/prometheus/` to enable TLS and specify the paths to the certificate and key files :
+   - Create the file  `config.yml` configuration file  at  `/etc/prometheus/` to enable TLS and specify the paths to the certificate and key files :
 
 ```yaml
      # Prometheus web configuration
@@ -92,7 +92,7 @@ htpasswd -nBC 12 "" | tr -d ':\n'
          tls_config:
            cert_file: /path/to/myprometheusdomain.one.cer
 		 basic_auth:
-	       username: "amr"
+	       username: "aziz"
            password: "your password here(not hashed)"
          static_configs:
            - targets: ['node-exporter.myprometheusdomain.one:9100']
@@ -107,7 +107,7 @@ htpasswd -nBC 12 "" | tr -d ':\n'
 or run node exporter directly 
 
 ```
-prometheus-node-exporter --web.config.file="/root/web.yml" &
+prometheus-node-exporter --web.config.file="/etc/node_exporter/config.yml" &
 ```
 
 
@@ -147,7 +147,7 @@ add these line and replace keys with previously generated keys from prometheus
 root_url = https://grafana.yourdomain.co
 protocol = https
 cert_key = /etc/grafana/grafana.key
-cert_file = /etc/grafana/grafana.crt
+cert_file = /etc/grafana/grafana.cer
 ```
 Once done, save and exit the file. Proceed by restarting the Grafana service:
 
